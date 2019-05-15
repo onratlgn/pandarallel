@@ -1,7 +1,7 @@
 import pandas as pd
 import pyarrow.plasma as plasma
 import multiprocessing as multiprocessing
-from tqdm._tqdm_notebook import tqdm_notebook as tqdm_notebook
+from tqdm import tqdm
 
 from .dataframe import DataFrame
 from .series import Series
@@ -40,7 +40,7 @@ class pandarallel:
         if progress_bar:
             print("WARNING: Progress bar is an experimental feature. This \
 can lead to a considerable performance loss.")
-            tqdm_notebook().pandas()
+            tqdm.pandas()
 
         cls.__store_ctx = plasma.start_plasma_store(int(shm_size_mb * 1e6))
         plasma_store_name, _ = cls.__store_ctx.__enter__()
